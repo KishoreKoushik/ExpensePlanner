@@ -10,7 +10,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
+      title: 'Personal Expenses',
+      theme: ThemeData(
+        primarySwatch: Colors.purple, //generates different shades of color internally to use in differant widgets
+        accentColor:  Colors.amber  //few widgets like button stake accentcolor if available, if not take primary color
+      ),
       home: MyHomePage(),
     );
   }
@@ -24,8 +28,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-   final List<Transaction> _userTransactions = [
+  final List<Transaction> _userTransactions = [
     Transaction(
       id: 't1',
       title: 'New Shoes',
@@ -52,21 +55,24 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _startAddNewTransaction(BuildContext ctx){
-    showModalBottomSheet(context: ctx, builder: (_) {
-      return GestureDetector(
-        onTap: () {},
-        child: NewTransaction(_addNewTransaction),
-        behavior: HitTestBehavior.opaque,
-      );
-    },);
+  void _startAddNewTransaction(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return GestureDetector(
+          onTap: () {},
+          child: NewTransaction(_addNewTransaction),
+          behavior: HitTestBehavior.opaque,
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        title: Text('Personal Expenses'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
